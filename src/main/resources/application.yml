@@ -1,12 +1,10 @@
 spring:
   application:
     name: sistemastock
-   
-   
   datasource:
     url: ${DB_URL}
-    username: ${USERNAME}
-    password: ${PASSWORD}
+    username: ${DB_USER}
+    password: ${DB_PASS}
   jpa:
     show-sql: true
     hibernate:

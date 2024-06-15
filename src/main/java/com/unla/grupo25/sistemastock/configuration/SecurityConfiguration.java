@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.unla.grupo25.sistemastock.serivces.implementation.UserService;
+import com.unla.grupo25.sistemastock.services.implementation.UserService;
 
 
 

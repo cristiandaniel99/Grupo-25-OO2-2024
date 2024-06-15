@@ -1,4 +1,4 @@
-package com.unla.grupo25.sistemastock.serivces.implementation;
+package com.unla.grupo25.sistemastock.services.implementation;
 
 import java.util.ArrayList;
 import java.util.HashSet;
