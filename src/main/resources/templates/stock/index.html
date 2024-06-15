@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Stock</title>
+    <link rel="stylesheet" href="css/stock.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/stock}">Stock</a></li>
+				<li><a th:href="@{/stock/altastock}">Alta Stock</a></li>
+                <li><a th:href="@{/comprar}">Comprar</a></li>
+                <li><a th:href="@{/contacto}">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="stock-list">
+            <h1>Listado de Stock</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+						<th>Codigo</th>
+                        <th>Cantidad</th>
+                        <th>Costo</th>
+                        <th>Precio Venta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="stock : ${stocks}">
+                        <td th:text="${stock.producto.nombre}"></td>
+						<td th:text="${stock.producto.codigo}"></td>
+                        <td th:text="${stock.cantidad}"></td>
+						<td th:text="${stock.producto.costo}"></td>
+                        <td th:text="${stock.producto.precioDeVenta}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Derechos Reservados</p>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,9 @@
 package com.unla.grupo25.sistemastock.entities;
 
+import java.time.LocalDate;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -34,16 +38,13 @@ public class StockProducto {
 	
 	@Column(name="minimaStock")
     private int minimaStock;
-
-	public StockProducto(Producto producto, int cantidad, int minimaStock) {
-		super();
-		this.producto = producto;
-		this.cantidad = cantidad;
-		this.minimaStock = minimaStock;
-	}
-    
-    
-    
-    
-    
+	
+	@Column(name="createdat")
+	@CreationTimestamp
+	private LocalDate createdAt;
+	
+	@Column(name="updatedat")
+	@CreationTimestamp
+	private LocalDate updatedAt;
+ 
 }

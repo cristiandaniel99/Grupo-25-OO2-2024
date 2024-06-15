@@ -6,9 +6,17 @@ public class ViewRouteHelper {
 	public static final String USER_LOGIN = "user/login";
 	public static final String USER_LOGOUT = "user/logout";
 	
-	//
-	
+	// HOME HELPERS
 	public static final String INDEX = "home/index";
-	public static final String ROUTE = "/index";
+	
+	// STOCK HELPERS
+	public static final String STOCK_INDEX = "stock/index";
+	public static final String ALTA_STOCK = "stock/altastock";
+	
+	
+	//REDIRECTS
+	public static final String ROUTE_INDEX = "/index";
+	public static final String ROUTE_STOCK_IDEX = "/index";
+	
 	
 }
