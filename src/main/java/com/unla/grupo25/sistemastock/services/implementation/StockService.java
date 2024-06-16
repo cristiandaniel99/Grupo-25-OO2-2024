@@ -42,8 +42,25 @@ public class StockService implements IStockService{
 		}
 	}
 
-	/*@Override
-	public List<StockProducto> getAllProducts() {
-		return repo producto.findall;
-	}*/
+	@Override
+	public void comprarProducto(int productoId, Integer cantidad) {
+		
+		StockProducto stockProducto = stockRepository.findByProductId(productoId);
+        if (stockProducto != null) {
+            int stockDisponible = stockProducto.getCantidad();
+            if (cantidad <= stockDisponible) {
+                stockProducto.setCantidad(stockDisponible - cantidad);
+                stockRepository.save(stockProducto);
+            } else {
+                throw new RuntimeException("La cantidad a comprar excede el stock disponible");
+            }
+        } else {
+            throw new RuntimeException("El producto no está disponible en el stock");
+        }
+        
+        
+        //la verificacion de niveles de minima stock y lanzar una alta de pedido de aprovisionamiento en caso de ser necesario
+		
+	}
+
 }

@@ -16,4 +16,6 @@ public interface IStockService {
 	
 	public boolean remove(int id);
 
+	public void comprarProducto(int productoId, Integer cantidad);
+
 }

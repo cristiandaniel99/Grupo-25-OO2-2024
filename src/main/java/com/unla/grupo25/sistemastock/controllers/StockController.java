@@ -1,5 +1,7 @@
 package com.unla.grupo25.sistemastock.controllers;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +14,7 @@ import com.unla.grupo25.sistemastock.dtos.StockDTO;
 import com.unla.grupo25.sistemastock.entities.Producto;
 import com.unla.grupo25.sistemastock.helpers.ViewRouteHelper;
 import com.unla.grupo25.sistemastock.services.IStockService;
+import com.unla.grupo25.sistemastock.services.IProductoService;
 
 
 @Controller
@@ -19,24 +22,27 @@ import com.unla.grupo25.sistemastock.services.IStockService;
 public class StockController {
 	
 	private IStockService stockService;
+	private IProductoService productoService;
 	
 	public StockController(IStockService stockService) {
 		this.stockService = stockService;
 	}
 	
-	/*@GetMapping("/altastock")
+	@GetMapping("/altastock")
 	public ModelAndView altaStock() { 
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.ALTA_STOCK); 
-		mAV.addObject("productos",productservice.findall()); 
+		mAV.addObject("productos",productoService.getAll()); 
 		mAV.addObject("producto", new Producto());
 		return mAV; 
-	}*/
+	}
 	
 	
 	@GetMapping("")
-	public ModelAndView index() { 
+	public ModelAndView index() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.STOCK_INDEX); 
 		mAV.addObject("stocks",stockService.getAll()); 
+		mAV.addObject("username", authentication.getName());
 		mAV.addObject("stock", new StockDTO());
 		return mAV; 
 	}
@@ -46,12 +52,5 @@ public class StockController {
 		stockService.insertOrUpdate(stockDTO); 
 		return new RedirectView(ViewRouteHelper.ROUTE_STOCK_IDEX);
 	}
-	
-	
-	/*@PostMapping("/decrement")
-	public RedirectView decrementStock(StockDTO stockDTO) {
-		stockService.decrement(stockDTO);
-	}*/
-	
 	
 }

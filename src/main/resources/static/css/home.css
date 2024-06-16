@@ -15,16 +15,23 @@ header {
     color: #fff;
     padding: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav {
+    flex: 1;
 }
 
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 0;
 }
 
-nav ul li {
+.nav-center li {
     margin: 0 20px;
 }
 
@@ -37,6 +44,30 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #ff6347;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.user-info span {
+    margin-right: 10px;
+    color: #fff;
+}
+
+.user-info a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #ff6347;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.user-info a:hover {
+    background-color: #e55342;
 }
 
 .background {
