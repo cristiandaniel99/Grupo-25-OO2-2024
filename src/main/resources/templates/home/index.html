@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +9,19 @@
 <body>
     <header>
         <nav>
-            <ul>
-                <li><a th:href="@{/}">Inicio</a></li>
-				<li><a th:href="@{/productos}">Productos</a></li>
-                <li><a th:href="@{/stock}">Stock</a></li>
-                <li><a th:href="@{/stock/altastock}">Alta Stock</a></li>
-                <li><a href="#">Comprar</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
+            <div class="nav-container">
+                <ul class="nav-center">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/stock">Stock</a></li>
+                    <li><a href="/stock/altastock">Alta Stock</a></li>
+                    <li><a href="/store">Tienda</a></li>
+                </ul>
+            </div>
         </nav>
+        <div class="user-info">
+            <span th:text="${username}"></span>
+            <a href="/logout">Logout</a>
+        </div>
     </header>
     <main>
         <div class="background">

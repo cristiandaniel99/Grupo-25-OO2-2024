@@ -12,4 +12,10 @@ import com.unla.grupo25.sistemastock.entities.StockProducto;
 import com.unla.grupo25.sistemastock.entities.User;
 
 public interface IStockRepository extends JpaRepository<StockProducto, Serializable>{
+	
+	
+	@Query("SELECT s FROM StockProducto s JOIN FETCH s.producto p WHERE p.id = :productoId")
+	public abstract StockProducto findByProductId(int productoId);
 }
+
+
