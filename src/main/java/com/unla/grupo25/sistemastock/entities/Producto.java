@@ -24,19 +24,19 @@ public class Producto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(value = AccessLevel.PROTECTED) private int id;
 	
-	@Column(name="codigo", nullable=false)
+	@Column(name="codigo", nullable=false, unique = true)
     private String codigo;
     
-	@Column(name="nombre")
+	@Column(name="nombre" , nullable=false)
     private String nombre;
     
 	@Column(name="descripcion")
     private String descripcion;
     
-	@Column(name="costo")
+	@Column(name="costo", nullable=false)
     private int costo;
     
-	@Column(name="precioDeVenta")
+	@Column(name="precioDeVenta" , nullable=false)
     private int precioDeVenta;
 
 	public Producto(String codigo, String nombre, String descripcion, int costo, int precioDeVenta) {
