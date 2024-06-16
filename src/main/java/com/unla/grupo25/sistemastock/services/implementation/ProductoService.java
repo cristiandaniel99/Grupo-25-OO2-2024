@@ -36,9 +36,18 @@ public class ProductoService implements IProductoService{
 			return productoRepository.findAll();
 		}
 		
+		 public boolean existsByCodigo(String codigo) {
+		        return productoRepository.existsByCodigo(codigo);
+		    }
+		
 		@Override
 		public ProductoDTO insertOrUpdate(ProductoDTO productoDTO) {
-			Producto producto = productoRepository.save(modelMapper.map( productoDTO, Producto.class));
+			Producto producto=null;
+			if(!productoRepository.existsByCodigo(productoDTO.getCodigo())) {
+				producto = productoRepository.save(modelMapper.map( productoDTO, Producto.class));
+			}
+			
+			
 			return modelMapper.map(producto, ProductoDTO.class);
 		}
 		

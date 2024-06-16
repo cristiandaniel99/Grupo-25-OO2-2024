@@ -16,5 +16,5 @@ public interface IProductoService {
 	
 	public boolean remove(int id);
 	
-	
+	public boolean existsByCodigo(String codigo);
 }
