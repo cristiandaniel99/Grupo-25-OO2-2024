@@ -31,7 +31,7 @@ public class Compra {
 	@Setter(value = AccessLevel.PROTECTED)private int idCompra;
 	
 	
-   @OneToOne(fetch = FetchType.LAZY)
+   @ManyToOne(fetch = FetchType.LAZY)
    @JoinColumn (name = "producto_id", nullable=false)
 	private Producto producto;
 	

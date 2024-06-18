@@ -10,7 +10,7 @@ public interface IProductoService {
 
 	public List<Producto>getAll();
 	
-	public Optional<Producto> findById(int id);
+	public Optional <Producto> findById(int id);
 	
 	public ProductoDTO insertOrUpdate(ProductoDTO productoModel);
 	

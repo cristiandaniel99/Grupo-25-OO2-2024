@@ -1,6 +1,7 @@
 package com.unla.grupo25.sistemastock.entities;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -46,5 +47,8 @@ public class StockProducto {
 	@Column(name="updatedat")
 	@CreationTimestamp
 	private LocalDate updatedAt;
+	
+	
+	
  
 }
