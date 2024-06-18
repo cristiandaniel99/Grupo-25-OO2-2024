@@ -2,10 +2,8 @@ package com.unla.grupo25.sistemastock.services.implementation;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.unla.grupo25.sistemastock.dtos.StockDTO;
 import com.unla.grupo25.sistemastock.entities.StockProducto;
 import com.unla.grupo25.sistemastock.repositories.IStockRepository;
 import com.unla.grupo25.sistemastock.services.IStockService;
@@ -14,8 +12,6 @@ import com.unla.grupo25.sistemastock.services.IStockService;
 public class StockService implements IStockService{
 	
 	private IStockRepository stockRepository;
-	
-	private ModelMapper modelMapper = new ModelMapper();
 	
 	public StockService(IStockRepository stockRepository) {
 		this.stockRepository = stockRepository;
@@ -27,9 +23,8 @@ public class StockService implements IStockService{
 	}
 	
 	@Override
-	public StockDTO insertOrUpdate(StockDTO stockDTO) {
-		StockProducto stock = stockRepository.save(modelMapper.map(stockDTO, StockProducto.class));
-		return modelMapper.map(stock, StockDTO.class);
+	public StockProducto insertOrUpdate(StockProducto stockProducto) {
+		return stockRepository.save(stockProducto);
 	}
 	
 	@Override
@@ -43,7 +38,7 @@ public class StockService implements IStockService{
 	}
 
 	@Override
-	public void comprarProducto(int productoId, Integer cantidad) {
+	public void BajaStockPorCompra(int productoId, Integer cantidad) {
 		
 		StockProducto stockProducto = stockRepository.findByProductId(productoId);
         if (stockProducto != null) {
@@ -58,9 +53,16 @@ public class StockService implements IStockService{
             throw new RuntimeException("El producto no está disponible en el stock");
         }
         
-        
+   
+   
         //la verificacion de niveles de minima stock y lanzar una alta de pedido de aprovisionamiento en caso de ser necesario
 		
 	}
+	
+	@Override
+	public StockProducto findByStockProductoId(int productoId) {
+		return stockRepository.findByProductId(productoId);
+	}
+	
 
 }

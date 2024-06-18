@@ -15,24 +15,23 @@
     </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/stock">Stock</a></li>
-                <li><a href="/stock/altastock">Alta Stock</a></li>
-                <li><a href="/store">Comprar</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-		
-		<div class="user-info">
-            <span th:text="${username}"></span>
-            <a href="/logout">Logout</a>
-        </div>
-		
-		
-    </header>
+	<header>
+	        <nav>
+	            <div class="nav-container">
+	                <ul class="nav-center">
+	                    <li><a href="/">Inicio</a></li>
+	                    <li><a href="/productos">Producto</a></li>
+	                    <li ><a href="/stock">Stock</a></li>
+	                    <li><a href="/stock/alta">Alta Stock</a></li>
+	                    <li><a href="/store">Tienda</a></li>
+	                </ul>
+	            </div>
+	        </nav>
+	        <div class="user-info">
+	            <span th:text="${username}"></span>
+	            <a href="/logout">Logout</a>
+	        </div>
+	    </header>
     <main>
         <h1>Comprar Productos</h1>
         <div class="product-list">

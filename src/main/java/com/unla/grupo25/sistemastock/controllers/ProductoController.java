@@ -18,6 +18,7 @@ import com.unla.grupo25.sistemastock.services.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,8 @@ public class ProductoController {
 
     @Autowired
     private IProductoService productoService;
-
+    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public ModelAndView listarProductos() {
     	ModelAndView mAV = new ModelAndView(ViewRouteHelper.PRODUCTO_INDEX); 
@@ -39,7 +41,8 @@ public class ProductoController {
 		mAV.addObject("producto", new ProductoDTO());
 		return mAV; 
     }
-
+    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/editar/{id}")
     public ModelAndView mostrarFormularioEditar(@PathVariable int id) {
         Optional<Producto> producto = productoService.findById(id);
@@ -47,13 +50,15 @@ public class ProductoController {
         modelAndView.addObject("producto", producto.orElse(new Producto()));
         return modelAndView;
     }
-
+    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/save") 
 	public ModelAndView create(@ModelAttribute("producto") ProductoDTO productoDTO) {
 		productoService.insertOrUpdate(productoDTO); 
 		return new ModelAndView("redirect:/productos");
 	}
-
+    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/eliminar/{id}")
     public ModelAndView eliminarProducto(@PathVariable int id) {
         productoService.remove(id);

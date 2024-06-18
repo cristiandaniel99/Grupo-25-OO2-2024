@@ -7,21 +7,23 @@
     <link rel="stylesheet" href="css/stock.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="nav-center">
-                <li><a th:href="@{/}">Inicio</a></li>
-                <li><a th:href="@{/stock}">Stock</a></li>
-                <li><a th:href="@{/stock/altastock}">Alta Stock</a></li>
-                <li><a th:href="@{/store}">Comprar</a></li>
-                <li><a th:href="@{/contacto}">Contacto</a></li>
-            </ul>
-        </nav>
-        <div class="user-info">
-            <span th:text="${username}"></span>
-            <a href="/logout">Logout</a>
-        </div>
-    </header>
+	<header>
+	        <nav>
+	            <div class="nav-container">
+	                <ul class="nav-center">
+	                    <li><a href="/">Inicio</a></li>
+	                    <li><a href="/productos">Producto</a></li>
+	                    <li ><a href="/stock">Stock</a></li>
+	                    <li><a href="/stock/alta">Alta Stock</a></li>
+	                    <li><a href="/store">Tienda</a></li>
+	                </ul>
+	            </div>
+	        </nav>
+	        <div class="user-info">
+	            <span th:text="${username}"></span>
+	            <a href="/logout">Logout</a>
+	        </div>
+	    </header>
     <main>
         <section class="stock-list">
             <h1>Listado de Stock</h1>

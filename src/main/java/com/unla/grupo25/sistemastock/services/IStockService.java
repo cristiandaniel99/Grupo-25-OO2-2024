@@ -10,12 +10,12 @@ public interface IStockService {
 
 	public List<StockProducto> getAll();
 	
-	public StockDTO insertOrUpdate(StockDTO stockModel);
+	public StockProducto insertOrUpdate(StockProducto stockProducto);
 	
-	//public StockDTO findByStockProductoId(int productoId);
+	public StockProducto findByStockProductoId(int productoId);
 	
 	public boolean remove(int id);
 
-	public void comprarProducto(int productoId, Integer cantidad);
+	public void BajaStockPorCompra(int productoId, Integer cantidad);
 
 }

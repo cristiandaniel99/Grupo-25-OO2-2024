@@ -44,4 +44,9 @@ public class UserService implements UserDetailsService {
 		}
 		return new ArrayList<>(grantedAuthorities);
 	}
+	
+	public com.unla.grupo25.sistemastock.entities.User findByUsername(String username) {
+		return (com.unla.grupo25.sistemastock.entities.User) userRepository.findByUsername(username);
+	}
+	
 }
