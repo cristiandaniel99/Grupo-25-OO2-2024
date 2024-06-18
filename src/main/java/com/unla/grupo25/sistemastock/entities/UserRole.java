@@ -34,7 +34,7 @@ public class UserRole {
 	@JoinColumn(name ="user_id", nullable=false)
 	private User user;
 	
-	@Column(name="rol", nullable = false, length = 100)
+	@Column(name="role", nullable = false, length = 100)
 	private String role;
 	
 	@Column(name="createdat")

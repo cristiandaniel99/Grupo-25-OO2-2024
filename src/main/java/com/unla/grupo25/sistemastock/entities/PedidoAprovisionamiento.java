@@ -39,7 +39,7 @@ public class PedidoAprovisionamiento {
 	
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn (name = "lote_id", nullable=false)
+	@JoinColumn (name = "lote_id")
 	private Lote lote;
 	
 	@Column(name="fecha")

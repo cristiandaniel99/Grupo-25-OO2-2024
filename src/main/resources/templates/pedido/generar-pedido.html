@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Generar Pedido de Aprovisionamiento</title>
+</head>
+<body>
+    <h1>Generar Pedido de Aprovisionamiento</h1>
+    <form action="/pedidoAprov/generar" method="post">
+        <label for="productoId">Producto:</label>
+        <select id="productoId" name="productoId" required>
+            <option value="" disabled selected>Seleccione un producto</option>
+            <option th:each="producto : ${productosBajoStock}"
+                    th:value="${producto.producto.id}"
+                    th:text="${producto.producto.nombre} + ' (ID: ' + ${producto.producto.id} + ')'">
+            </option>
+        </select>
+        
+        <label for="proveedorId">Proveedor:</label>
+        <select id="proveedorId" name="proveedorId" required>
+            <option value="" disabled selected>Seleccione un proveedor</option>
+            <option th:each="proveedor : ${proveedores}"
+                    th:value="${proveedor.id}"
+                    th:text="${proveedor.nombre}">
+            </option>
+        </select>
+        
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
+        <button type="submit">Generar Pedido</button>
+    </form>
+    
+    <h2>Productos Bajo Stock</h2>
+    <ul>
+        <li th:each="producto : ${productosBajoStock}"
+            th:text="'ID: ' + ${producto.id} + ', Producto: ' + ${producto.producto.nombre} + ', Cantidad: ' + ${producto.cantidad} + ', Stock Mínimo: ' + ${producto.minimaStock}">
+        </li>
+    </ul>
+</body>
+</html>

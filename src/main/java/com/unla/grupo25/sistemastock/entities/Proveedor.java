@@ -18,7 +18,7 @@ public class Proveedor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Setter(value = AccessLevel.PROTECTED)private int idProveedor;
+	@Setter(value = AccessLevel.PROTECTED)private int id;
 	@Column(name="nombre")
 	private String nombre;
 	@Column(name="direccion")
