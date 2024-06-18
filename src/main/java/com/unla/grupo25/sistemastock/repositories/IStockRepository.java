@@ -16,6 +16,9 @@ public interface IStockRepository extends JpaRepository<StockProducto, Serializa
 	
 	@Query("SELECT s FROM StockProducto s JOIN FETCH s.producto p WHERE p.id = :productoId")
 	public abstract StockProducto findByProductId(int productoId);
+	
+	@Query("SELECT s FROM StockProducto s JOIN FETCH s.producto WHERE s.cantidad < s.minimaStock")
+    List<StockProducto> findProductosBajoStock();
 }
 
 
