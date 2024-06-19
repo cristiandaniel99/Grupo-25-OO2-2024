@@ -45,16 +45,21 @@ public class Lote {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lote")
 	private Set<PedidoAprovisionamiento> pedidosDeAprov = new HashSet<PedidoAprovisionamiento>();
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "proveedor", nullable = false)
+	private Proveedor proveedor;
 
 	@Column(name = "precioCompra")
 	private int precioCompra;
 
-	public Lote(Producto producto, int cantidadRecibida, LocalDate fechaDeRecepcion, int precioCompra) {
+	public Lote(Producto producto, int cantidadRecibida, LocalDate fechaDeRecepcion, int precioCompra, Proveedor proveedor) {
 		super();
 		this.producto = producto;
 		this.cantidadRecibida = cantidadRecibida;
 		this.fechaDeRecepcion = fechaDeRecepcion;
 		this.precioCompra = precioCompra;
+		this.proveedor = proveedor;
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.unla.grupo25.sistemastock.entities.Lote;
 import com.unla.grupo25.sistemastock.entities.PedidoAprovisionamiento;
 import com.unla.grupo25.sistemastock.entities.Producto;
+import com.unla.grupo25.sistemastock.entities.Proveedor;
 import com.unla.grupo25.sistemastock.repositories.ILoteRepository;
 import com.unla.grupo25.sistemastock.services.ILoteService;
 import com.unla.grupo25.sistemastock.services.IProductoService;
@@ -33,13 +34,14 @@ public class LoteService implements ILoteService{
 	}
 	
 	@Override
-	public Lote SetearLote(Producto producto, int cantidadRecibida, LocalDate fechaDeRecepcion, PedidoAprovisionamiento pedido) {
+	public Lote SetearLote(Producto producto, int cantidadRecibida, LocalDate fechaDeRecepcion, PedidoAprovisionamiento pedido, Proveedor proveedor) {
 		Lote lote = new Lote();
         lote.setProducto(productoService.findById(producto.getId()));
         lote.setCantidadRecibida(cantidadRecibida);
         lote.setFechaDeRecepcion(LocalDate.now());
         lote.getPedidosDeAprov().add(pedido);
         lote.setPrecioCompra(productoService.findById(producto.getId()).getCosto()*cantidadRecibida);
+        lote.setProveedor(proveedor);
         
         
 
