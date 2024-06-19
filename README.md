@@ -24,8 +24,8 @@ INSERT INTO producto (codigo, costo, descripcion, nombre, precio_de_venta) VALUE
 INSERT INTO producto (codigo, costo, descripcion, nombre, precio_de_venta) VALUES ('SPK001', 70, 'Parlante Bluetooth portátil con 10 horas de autonomía', 'JBL Flip 5', 120);
 INSERT INTO producto (codigo, costo, descripcion, nombre, precio_de_venta) VALUES ('WCH001', 100, 'Reloj inteligente con monitor de frecuencia cardíaca y GPS', 'Apple Watch SE', 180);
 
-INSERT INTO user (id, enable, password, username) VALUES (1, true, "$2a$10$UK/FVxq0Op2W5b/cyR56kO1y8OvF8RMrfBmaYdM4EDBbutM1o.xcq", "administrador");
-INSERT INTO user (id, enable, password, username) VALUES (2, true, "$2a$10$zWtuGJddGNg11p5cAjrUtu2OAliG2XsO/bVG4Puyh/n6lT69kWPPu", "usuario");
+INSERT INTO user (id, enabled, password, username) VALUES (1, true, "$2a$10$UK/FVxq0Op2W5b/cyR56kO1y8OvF8RMrfBmaYdM4EDBbutM1o.xcq", "administrador");
+INSERT INTO user (id, enabled, password, username) VALUES (2, true, "$2a$10$zWtuGJddGNg11p5cAjrUtu2OAliG2XsO/bVG4Puyh/n6lT69kWPPu", "usuario");
 
 INSERT INTO user_role (role, user_id) VALUES ("ROLE_ADMIN", 1);
 INSERT INTO user_role (role, user_id) VALUES ("ROLE_USER", 2);
