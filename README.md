@@ -1,10 +1,11 @@
 PASOS PARA INCIAR EL SISTEMA:
 
-1- CREAR LA BASE DE DATOS
+1- CREAR LA BASE DE DATOS => CREATE DATABASE sistemastock;
 2- GENERAR LAS VARIABLES DE ENTORNO (DB_URL, DB_USER, DB_PASS)
 3- INCIAR EL PROYECTO PARA QUE SE GENEREN LAS TABLAS
 4- EJECUTAR EL SIGUIENTE SCRIPT EN MYSQL WORKBENCH:
 
+USE sistemastock;
 INSERT INTO proveedor (direccion, nombre, rubro) VALUES ('Av. Innovación 123', 'Apple Inc.', 'Tecnología');
 INSERT INTO proveedor (direccion, nombre, rubro) VALUES ('Calle del Futuro 456', 'Microsoft Corporation', 'Tecnología');
 INSERT INTO proveedor (direccion, nombre, rubro) VALUES ('Paseo Digital 789', 'Google LLC', 'Tecnología');
