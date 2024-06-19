@@ -17,7 +17,7 @@ public class ViewRouteHelper {
 	//COMPRA 
 	public static final String STORE_INDEX = "/compra/index";
   
-  //PRODUCTO
+	//PRODUCTO
 	public static final String PRODUCTO_INDEX = "producto/index";
 	public static final String ALTA_PRODUCTO = "producto/alta";
 	public static final String FORM_PRODUCTO = "producto/formulario-producto";
