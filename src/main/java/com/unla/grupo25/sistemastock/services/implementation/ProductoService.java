@@ -27,7 +27,7 @@ public class ProductoService implements IProductoService{
 			this.productoRepository = productoRepository;
 		}
 		
-		 public Optional<Producto> findById(int id) {
+		 public Producto findById(int id) {
 		        return productoRepository.findById(id);
 		    }
 		
@@ -46,7 +46,9 @@ public class ProductoService implements IProductoService{
 			if(!productoRepository.existsByCodigo(productoDTO.getCodigo())) {
 				producto = productoRepository.save(modelMapper.map( productoDTO, Producto.class));
 			}
-			
+			else {
+				throw new RuntimeException("El producto con este codigo ya existe");
+			}
 
 			
 			return modelMapper.map(producto, ProductoDTO.class);

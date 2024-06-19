@@ -63,14 +63,14 @@ public class StockController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/save") 
 	public RedirectView create(@ModelAttribute(name= "stockProducto") StockProducto stockProducto, @RequestParam("productoId") int productoId) {
-		Optional<Producto> producto = productoService.findById(productoId);
+		Producto producto = productoService.findById(productoId);
 		StockProducto stockProductoExist = stockService.findByStockProductoId(productoId);
 		if(stockProductoExist != null) {
 			stockProductoExist.setCantidad(stockProductoExist.getCantidad() + stockProducto.getCantidad());
 			stockProductoExist.setMinimaStock(stockProducto.getMinimaStock());
 			stockService.insertOrUpdate(stockProductoExist);
 		}else {
-			stockProducto.setProducto(producto.get());
+			stockProducto.setProducto(producto);
 			stockService.insertOrUpdate(stockProducto);
 		}
 		
@@ -78,8 +78,8 @@ public class StockController {
 		
 		lote.setCantidadRecibida(stockProducto.getCantidad());
 		lote.setFechaDeRecepcion(LocalDate.now());
-		lote.setProducto(producto.get());
-		lote.setPrecioCompra(producto.get().getCosto());
+		lote.setProducto(producto);
+		lote.setPrecioCompra(producto.getCosto());
 		
 		loteService.insertOrUpdate(lote);
 		

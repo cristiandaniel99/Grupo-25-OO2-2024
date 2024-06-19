@@ -13,6 +13,10 @@ import com.unla.grupo25.sistemastock.entities.User;
 @Repository
 public interface IProductoRepository extends JpaRepository<Producto, Serializable> {
 	
+	public Producto findById(int id);
+	
+	@Query("SELECT p FROM Producto p WHERE p.id = :productoId")
+	public Producto findByid(int productoId);
 	
 	public boolean existsByCodigo(String codigo);
 }
