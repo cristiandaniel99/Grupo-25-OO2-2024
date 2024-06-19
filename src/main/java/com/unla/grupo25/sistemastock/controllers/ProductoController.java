@@ -45,9 +45,9 @@ public class ProductoController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/editar/{id}")
     public ModelAndView mostrarFormularioEditar(@PathVariable int id) {
-        Optional<Producto> producto = productoService.findById(id);
+       Producto producto = productoService.findById(id);
         ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.FORM_PRODUCTO); 
-        modelAndView.addObject("producto", producto.orElse(new Producto()));
+        modelAndView.addObject("producto", (new Producto()));
         return modelAndView;
     }
     

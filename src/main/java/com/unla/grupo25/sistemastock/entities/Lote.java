@@ -2,6 +2,7 @@ package com.unla.grupo25.sistemastock.entities;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;

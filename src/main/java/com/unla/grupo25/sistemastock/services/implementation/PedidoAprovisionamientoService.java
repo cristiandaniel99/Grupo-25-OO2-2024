@@ -28,7 +28,7 @@ public class PedidoAprovisionamientoService implements IPedidoAprovisionamientoS
 
 
 	 @Autowired
-	    private IStockRepository stockProductoRepository;
+	    private IStockRepository stockRepository;
 
 	    @Autowired
 	    private IPedidoAprovisionamientoRepository pedidoAprovisionamientoRepository;
@@ -39,8 +39,11 @@ public class PedidoAprovisionamientoService implements IPedidoAprovisionamientoS
 	    private ModelMapper modelMapper = new ModelMapper();
 	    
 	    @Transactional
-	    public void generarPedidoDeAprovisionamiento(Integer productoId, Integer cantidad, Integer proveedorId) {
-	        StockProducto stock = stockProductoRepository.findById(productoId).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+	    public PedidoAprovisionamiento generarPedidoDeAprovisionamiento(Integer productoId, Integer cantidad, Integer proveedorId) {
+	    	StockProducto stock = stockRepository.findByProductId(productoId);
+	        		if(stock==null) {
+	        			throw new RuntimeException("no se encontro el objeto");
+	        		}
 	        
 	        PedidoAprovisionamiento pedido = new PedidoAprovisionamiento();
 	        pedido.setProducto(stock.getProducto());
@@ -52,40 +55,23 @@ public class PedidoAprovisionamientoService implements IPedidoAprovisionamientoS
 	        // Obtener proveedor seleccionado por el usuario
 	        Proveedor proveedor = proveedorRepository.findById(proveedorId).orElseThrow(() -> new RuntimeException("Proveedor no encontrado"));
 	        pedido.setProveedor(proveedor);
-
-	        pedidoAprovisionamientoRepository.save(pedido);
+            PedidoAprovisionamiento pedidoAprov;
+	       return pedidoAprovisionamientoRepository.save(pedido);
 	    }
 
 	    public List<StockProducto> findProductosBajoStock() {
-	        return stockProductoRepository.findProductosBajoStock();
+	        return stockRepository.findProductosBajoStock();
 	    }
 	    
 	    
 	    @Override
-	    public void insertOrUpdate(PedidoAprovisionamientoDTO pedidoDTO) {
+	    public void insertOrUpdate(PedidoAprovisionamiento pedido) {
 	    	
-	    	
-	    	
-	    	Integer productoId = pedidoDTO.getProducto().getId();
-	        Integer cantidad = pedidoDTO.getCantidad();
-	        Integer proveedorId = pedidoDTO.getProveedor().getId();
-
-	        StockProducto stock = stockProductoRepository.findById(productoId)
-	                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
-	        PedidoAprovisionamiento pedido = new PedidoAprovisionamiento();
-	        pedido.setProducto(stock.getProducto());
-	        pedido.setCantidad(cantidad);
-	        pedido.setFecha(LocalDate.now());
-	        pedido.setEstadoEntrega(false);
-	        pedido.setTotal(stock.getProducto().getCosto() * cantidad);
-
-	        Proveedor proveedor = proveedorRepository.findById(proveedorId)
-	                .orElseThrow(() -> new RuntimeException("Proveedor no encontrado"));
-	        pedido.setProveedor(proveedor);
-
 	        pedidoAprovisionamientoRepository.save(pedido);
 	    }
+	    
+	    
+	    
 	}
 	
 

@@ -66,8 +66,8 @@ public class CompraController {
 			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 			User user = userService.findByUsername(userDetails.getUsername());
 			
-			Optional<Producto> productoOptional  = productoService.findById(productoId);
-			Producto producto = productoOptional.get();
+			Producto productoOptional  = productoService.findById(productoId);
+			Producto producto = productoOptional;
 			
 			Compra compra = new Compra();
 			compra.setCantidad(cantidad);
