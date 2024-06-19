@@ -30,6 +30,7 @@ import com.unla.grupo25.sistemastock.helpers.ViewRouteHelper;
 import com.unla.grupo25.sistemastock.services.ILoteService;
 import com.unla.grupo25.sistemastock.services.IPedidoAprovisionamientoService;
 import com.unla.grupo25.sistemastock.services.IProductoService;
+import com.unla.grupo25.sistemastock.services.IProveedorService;
 import com.unla.grupo25.sistemastock.services.IStockService;
 import com.unla.grupo25.sistemastock.services.implementation.LoteService;
 import com.unla.grupo25.sistemastock.services.implementation.PedidoAprovisionamientoService;
@@ -44,15 +45,13 @@ public class PedidoAprovisionamientoController {
 
 	@Autowired
     private PedidoAprovisionamientoService pedidoAprovisionamientoService;
-
-    @Autowired
-    private ProveedorService proveedorService;
    
     @Autowired
     private IStockService stockProductoService;
     
     private IProductoService productoService;
- 
+    
+    private IProveedorService proveedorService;
     
     private ILoteService loteService;
     
@@ -61,7 +60,7 @@ public class PedidoAprovisionamientoController {
   
 
 	public PedidoAprovisionamientoController(PedidoAprovisionamientoService pedidoAprovisionamientoService,
-			ProveedorService proveedorService, IStockService stockProductoService, IProductoService productoService,
+			IProveedorService proveedorService, IStockService stockProductoService, IProductoService productoService,
 			ILoteService loteService) {
 		super();
 		this.pedidoAprovisionamientoService = pedidoAprovisionamientoService;
@@ -75,7 +74,7 @@ public class PedidoAprovisionamientoController {
     @GetMapping("/generarPedido")
     public String mostrarFormulario(Model model) {
         List<StockProducto> productosBajoStock = pedidoAprovisionamientoService.findProductosBajoStock();
-        List<Proveedor> proveedores = proveedorService.findAll();
+        List<Proveedor> proveedores = proveedorService.getAll();
         model.addAttribute("productosBajoStock", productosBajoStock);
         model.addAttribute("proveedores", proveedores);
         return ViewRouteHelper.PEDIDO_APROV;
@@ -96,7 +95,8 @@ public class PedidoAprovisionamientoController {
         
         // Crear objeto Lote y setear sus datos
         Producto producto=productoService.findById(productoId);
-        Lote lote=loteService.SetearLote(producto, cantidad, LocalDate.now(), pedido);
+        Optional <Proveedor> proveedor = proveedorService.findById(proveedorId);
+        Lote lote=loteService.SetearLote(producto, cantidad, LocalDate.now(), pedido, proveedor.get());
         
         
         StockProducto stock=stockProductoService.findByStockProductoId(productoId);

@@ -42,6 +42,18 @@
                     <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombre}"></option>
                 </select>
             </div>
+			
+			<div class="form-group">
+				<label for="proveedorId">Proveedor:</label>
+                <select id="proveedorId" name="proveedorId" required>
+                    <option value="" disabled selected>Seleccione un proveedor</option>
+                    <option th:each="proveedor : ${proveedores}"
+                            th:value="${proveedor.id}"
+                            th:text="${proveedor.nombre}">
+                    </option>
+                </select>
+			</div>
+			
             <button type="submit">Stockear</button>
         </form>
     </main>
