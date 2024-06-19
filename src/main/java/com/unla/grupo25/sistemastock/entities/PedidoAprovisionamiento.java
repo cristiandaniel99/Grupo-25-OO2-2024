@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -29,16 +30,22 @@ public class PedidoAprovisionamiento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(value = AccessLevel.PROTECTED)private int id;
 	
+	//@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn (name = "producto_id", nullable=false)
+	//private Producto producto;
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "producto_id", nullable=false)
 	private Producto producto;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	//me parece que aca seria many to ne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn (name = "proveedor_id", nullable=false)
 	private Proveedor proveedor;
 	
-	
-	@OneToOne(fetch = FetchType.LAZY)
+	//creo que aca tambien seria many to one
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn (name = "lote_id")
 	private Lote lote;
 	
@@ -55,9 +62,10 @@ public class PedidoAprovisionamiento {
 	@Column(name="estadoEntrega")
 	private boolean estadoEntrega;
 
-	public PedidoAprovisionamiento(Producto producto, Proveedor proveedor, LocalDate fecha, int cantidad, int total,
+	public PedidoAprovisionamiento(int id,Producto producto, Proveedor proveedor, LocalDate fecha, int cantidad, int total,
 			boolean estadoEntrega) {
 		super();
+		this.id=id;
 		this.producto = producto;
 		this.proveedor = proveedor;
 		this.fecha = fecha;
