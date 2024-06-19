@@ -1,5 +1,6 @@
 package com.unla.grupo25.sistemastock.controllers;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo25.sistemastock.dtos.StockDTO;
+import com.unla.grupo25.sistemastock.entities.Lote;
 import com.unla.grupo25.sistemastock.entities.Producto;
 import com.unla.grupo25.sistemastock.entities.StockProducto;
 import com.unla.grupo25.sistemastock.helpers.ViewRouteHelper;
 import com.unla.grupo25.sistemastock.services.IStockService;
+import com.unla.grupo25.sistemastock.services.ILoteService;
 import com.unla.grupo25.sistemastock.services.IProductoService;
 
 
@@ -28,10 +31,12 @@ public class StockController {
 	
 	private IStockService stockService;
 	private IProductoService productoService;
+	private ILoteService loteService;
 	
-	public StockController(IStockService stockService, IProductoService productoService) {
+	public StockController(IStockService stockService, IProductoService productoService, ILoteService loteService) {
 		this.stockService = stockService;
 		this.productoService = productoService;
+		this.loteService = loteService;
 	}
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/alta")
@@ -68,6 +73,18 @@ public class StockController {
 			stockProducto.setProducto(producto.get());
 			stockService.insertOrUpdate(stockProducto);
 		}
+		
+		Lote lote = new Lote();
+		
+		lote.setCantidadRecibida(stockProducto.getCantidad());
+		lote.setFechaDeRecepcion(LocalDate.now());
+		lote.setProducto(producto.get());
+		lote.setPrecioCompra(producto.get().getCosto());
+		
+		loteService.insertOrUpdate(lote);
+		
 		return new RedirectView(ViewRouteHelper.ROUTE_STOCK_IDEX);
+		
 	}
+
 }

@@ -25,10 +25,10 @@
 		        </div>
 		    </header>
     <main>
-        <div class="stock-list">
+        <div class="stock-list ">
 			<h2>Productos Bajo Stock</h2>
-			            <ul>
-			                <li th:each="producto : ${productosBajoStock}"
+			            <ul class="ul">
+			                <li class="ul_li"th:each="producto : ${productosBajoStock}"
 			                    th:text="'ID: ' + ${producto.id} + ', Producto: ' + ${producto.producto.nombre} + ', Cantidad: ' + ${producto.cantidad} + ', Stock Mínimo: ' + ${producto.minimaStock}">
 			                </li>
 			            </ul>
