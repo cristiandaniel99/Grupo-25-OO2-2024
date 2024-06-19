@@ -12,7 +12,7 @@ public class ViewRouteHelper {
 	// STOCK
 	public static final String STOCK_INDEX = "stock/index";
 	public static final String ALTA_STOCK = "stock/alta-stock";
-	public static final String PEDIDO_APROV = "pedido/generar-pedido";
+	public static final String PEDIDO_APROV = "pedido/pedido-aprov";
 
 	//COMPRA 
 	public static final String STORE_INDEX = "/compra/index";
