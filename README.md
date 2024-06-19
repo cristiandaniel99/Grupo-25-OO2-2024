@@ -40,9 +40,9 @@ INSERT INTO stock_producto (cantidad, minima_stock, producto_id) VALUES (15, 5, 
 5- Una vez ejecutada la carga incial se puede dar ingreso al sistema, iniciando nuevamente el proyecto.
 Credenciales de acceso: 
 
-Username: usuario --> Password:user
+Username: usuario --> Password: user
 
-Username: administrador --> Password:admin
+Username: administrador --> Password: admin
 
 
 
