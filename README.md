@@ -1,12 +1,12 @@
-PASOS PARA INCIAR EL SISTEMA:
+# PASOS PARA INCIAR EL SISTEMA:
 
-1- CREAR LA BASE DE DATOS => CREATE DATABASE sistemastock;
+- CREAR LA BASE DE DATOS => CREATE DATABASE sistemastock;
 
-2- GENERAR LAS VARIABLES DE ENTORNO (DB_URL, DB_USER, DB_PASS)
+- GENERAR LAS VARIABLES DE ENTORNO (DB_URL, DB_USER, DB_PASS)
 
-3- INCIAR EL PROYECTO PARA QUE SE GENEREN LAS TABLAS
+- INCIAR EL PROYECTO PARA QUE SE GENEREN LAS TABLAS
 
-4- EJECUTAR EL SIGUIENTE SCRIPT EN MYSQL WORKBENCH:
+- EJECUTAR EL SIGUIENTE SCRIPT EN MYSQL WORKBENCH:
 
 USE sistemastock;
 INSERT INTO proveedor (direccion, nombre, rubro) VALUES ('Av. Innovación 123', 'Apple Inc.', 'Tecnología');
@@ -40,7 +40,7 @@ INSERT INTO stock_producto (cantidad, minima_stock, producto_id) VALUES (5, 2, 4
 INSERT INTO stock_producto (cantidad, minima_stock, producto_id) VALUES (15, 5, 5);
 
 
-5- Una vez ejecutada la carga incial se puede dar ingreso al sistema, iniciando nuevamente el proyecto.
+- Una vez ejecutada la carga incial se puede dar ingreso al sistema, iniciando nuevamente el proyecto.
 Credenciales de acceso: 
 
 Username: usuario --> Password: user
